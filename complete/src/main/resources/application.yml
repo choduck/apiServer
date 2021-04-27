@@ -1,0 +1,19 @@
+server:
+  port: 9999
+  
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: employeeModule
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/employee/**
+        filters:
+        - MyFilter
+      - id: productModule
+        uri: http://localhost:8080/
+        predicates:
+        - Path=/product/**
+        filters:
+        - MyFilter        
